@@ -27,6 +27,19 @@ public class Photo {
     @NotNull
     private Boolean visible;
 
+    
+    public Photo() {
+        super();
+    }
+
+    public Photo(Integer id, String title, String description, String url, Boolean visible) {
+        this.id = id;
+        this.title = title;
+        this.description = description;
+        this.url = url;
+        this.visible = visible;
+    }
+
     public Integer getId() {
         return id;
     }

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <th:block th:replace="~{/fragments/resources :: head}"></th:block>
+    <title>Photo list</title>
+</head>
+<body>
+<header>
+    <nav th:replace="~{/fragments/navbar :: navbar('index')}"></nav>
+</header>
+<div class="container ms_header-margin">
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th scope="col">#Id</th>
+            <th scope="col">Titolo</th>
+            <th scope="col">Descrizione</th>
+            <th scope="col">Thumbnail</th>
+            <th scope="col">Azioni</th>
+        </tr>
+        </thead>
+
+        <tbody class="table-group-divider">
+        <tr th:each="photo : ${photos}" th:object="${photo}">
+            <th scope="row" th:text="*{id}"></th>
+            <td th:text="*{title}"></td>
+            <td th:text="*{description}"></td>
+            <td class="align-middle"><img th:src="${photo.url}" class="ms_thumb-limits"></td>
+            <td class="align-middle">
+                <div class="d-flex flex-column p-2 fs-4 text-center">
+                    <i class="fa-solid fa-plus py-2"></i>
+                    <i class="fa-solid fa-pen-fancy py-2"></i>
+                    <i class="fa-solid fa-x py-2"></i>
+                </div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

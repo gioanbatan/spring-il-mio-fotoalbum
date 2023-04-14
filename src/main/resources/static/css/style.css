@@ -1,4 +1,39 @@
+/* RESET */
+img {
+    max-width: 100%;
+}
+
+/* CUSTOM PROPERTIES*/
+:root {
+    --header-height: 70px;
+}
+
+/* COMMON */
 body {
     font-family: 'Josefin Sans', sans-serif;
     font-weight: 400;
+
+    background-color: #aaaaaa;
+    color: #101010;
+}
+
+header {
+    height: var(--header-height);
+    position: fixed;
+    width: 100%;
+}
+
+/* UTILITY */
+.ms_header-margin {
+    padding-top: var(--header-height);
+}
+
+.ms_bg-nav {
+    background-color: #dddddd;
+    box-shadow: 0 4px 0 #00000045;
+}
+
+/* CUSTOM */
+.ms_thumb-limits {
+    max-width: 100px;
 }
