@@ -56,4 +56,15 @@ public class PhotoService {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Photo with id " + id + " not found.");
         }
     }
+
+    public Boolean deletePhotoById(Integer id) throws PhotoNotFoundException {
+        try {
+            photoRepository.deleteById(id);
+            return true;
+        } catch (PhotoNotFoundException e) {
+            return false;
+        } catch (RuntimeException e) {
+            return false;
+        }
+    }
 }

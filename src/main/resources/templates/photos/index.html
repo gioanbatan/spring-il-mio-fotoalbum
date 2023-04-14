@@ -14,10 +14,17 @@
     <nav th:replace="~{/fragments/navbar :: navbar('index')}"></nav>
 </header>
 <div class="container ms_header-margin">
+    <th:block th:if="${message}">
+            <div class="alert alert-dismissible fade show my-4"
+                 th:classAppend="${#strings.equals(message.type, 'SUCCESS')} ? alert-info : alert-danger">
+                <div th:text="${message.message}"></div>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+    </th:block>
+
     <div class="row">
         <div class="col-8">
             <h1>All photos</h1>
-
         </div>
         <div class="col-4 d-flex align-items-center justify-content-end">
             <a th:href="@{/photos/create}" class="btn btn-outline-dark align-middle">
@@ -26,7 +33,11 @@
         </div>
     </div>
 
-    <table class="table table-striped">
+    <div class="text-center fs-2 rounded border border-2 border-dark" th:if="${photos.size()} == 0">No photos
+        present.
+    </div>
+
+    <table th:unless="${photos.size()} == 0" class="table table-striped">
         <thead>
         <tr>
             <th scope="col">#PhotoId</th>
@@ -49,10 +60,12 @@
             </td>
             <td class="align-middle">
                 <div class="d-flex flex-column p-2 fs-4 text-center">
-                    <a th:href="@{|/photos/edit/*{id}|}">
+                    <a th:href="@{|/photos/edit/*{id}|}" th:title="'Modify ' + *{title}">
                         <i class="fa-solid fa-pen-fancy py-2"></i>
                     </a>
+                    <a <a th:href="@{|/photos/delete/*{id}|}" th:title="'Delete ' + *{title}">
                     <i class="fa-solid fa-x py-2"></i>
+                    </a>
                 </div>
             </td>
         </tr>

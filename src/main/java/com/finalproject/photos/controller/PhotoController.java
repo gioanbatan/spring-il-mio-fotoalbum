@@ -1,10 +1,10 @@
 package com.finalproject.photos.controller;
 
 import com.finalproject.photos.exception.PhotoNotFoundException;
+import com.finalproject.photos.model.AlertMessage;
 import com.finalproject.photos.model.Photo;
 import com.finalproject.photos.repository.PhotoRepository;
 import com.finalproject.photos.service.PhotoService;
-import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 import java.util.Optional;
@@ -82,5 +83,24 @@ public class PhotoController {
         } catch (PhotoNotFoundException e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Photo with id " + id + " not found.");
         }
+    }
+
+    @GetMapping("/delete/{id}")
+    public String delete(@PathVariable Integer id, RedirectAttributes redirectAttributes) {
+        try {
+            Optional<Photo> result = photoRepository.findById(id);
+            Boolean success = photoService.deletePhotoById(id);
+            if (success) {
+                redirectAttributes.addFlashAttribute("message", new AlertMessage(AlertMessage.AlertMessagesType.SUCCESS, "Photo " + result.get().getTitle() + " deleted successfully."));
+                return "redirect:/photos";
+            } else {
+                redirectAttributes.addFlashAttribute("message",
+                        new AlertMessage(AlertMessage.AlertMessagesType.ERROR, "ERROR - Can't delete " + result.get().getTitle() + "."));
+            }
+        } catch (PhotoNotFoundException e) {
+            redirectAttributes.addFlashAttribute("message",
+                    new AlertMessage(AlertMessage.AlertMessagesType.ERROR, "ERROR - Photo don't found."));
+        }
+        return "redirect:/photos";
     }
 }
