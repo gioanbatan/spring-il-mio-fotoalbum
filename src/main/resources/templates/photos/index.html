@@ -30,7 +30,11 @@
             <th scope="row" th:text="*{id}"></th>
             <td th:text="*{title}"></td>
             <td th:text="*{description}"></td>
-            <td class="align-middle"><img th:src="${photo.url}" class="ms_thumb-limits"></td>
+            <td class="align-middle">
+                <a th:href="@{|/photos/*{id}|}">
+                    <img th:src="${photo.url}" class="ms_thumb-limits">
+                </a>
+            </td>
             <td class="align-middle">
                 <div class="d-flex flex-column p-2 fs-4 text-center">
                     <i class="fa-solid fa-plus py-2"></i>

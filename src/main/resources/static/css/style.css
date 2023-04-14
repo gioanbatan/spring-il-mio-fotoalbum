@@ -3,6 +3,11 @@ img {
     max-width: 100%;
 }
 
+a {
+    text-decoration: none;
+    color: initial;
+}
+
 /* CUSTOM PROPERTIES*/
 :root {
     --header-height: 70px;
@@ -36,4 +41,8 @@ header {
 /* CUSTOM */
 .ms_thumb-limits {
     max-width: 100px;
+}
+
+.ms_image-height-limit-600 {
+    max-height: 600px;
 }

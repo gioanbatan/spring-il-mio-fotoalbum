@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -25,5 +26,14 @@ public class PhotoController {
 
         model.addAttribute("photos", photos);
         return ("/photos/index");
+    }
+
+    @GetMapping("/{id}")
+    public String show(Model model, @PathVariable Integer id) {
+        Photo photo;
+        photo = photoService.getPhotoById(id);
+
+        model.addAttribute("photo", photo);
+        return ("/photos/show");
     }
 }
