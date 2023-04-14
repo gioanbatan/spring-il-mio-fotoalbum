@@ -17,7 +17,6 @@ public class Photo {
     private String title;
 
     @Lob
-    @NotBlank
     private String description;
 
     @Lob
@@ -27,7 +26,7 @@ public class Photo {
     @NotNull
     private Boolean visible;
 
-    
+
     public Photo() {
         super();
     }

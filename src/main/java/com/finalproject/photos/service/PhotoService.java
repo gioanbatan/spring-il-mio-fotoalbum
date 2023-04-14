@@ -28,4 +28,15 @@ public class PhotoService {
             throw new PhotoNotFoundException("Image not found.");
         }
     }
+
+    public Photo createPhoto(Photo formPhoto) {
+        Photo photoToPersist = new Photo();
+
+        photoToPersist.setTitle(formPhoto.getTitle());
+        photoToPersist.setDescription(formPhoto.getDescription());
+        photoToPersist.setUrl(formPhoto.getUrl());
+        photoToPersist.setVisible(formPhoto.getVisible());
+
+        return photoRepository.save(photoToPersist);
+    }
 }

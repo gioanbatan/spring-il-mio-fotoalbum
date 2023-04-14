@@ -36,6 +36,8 @@ public class SecurityConfiguration {
         http.authorizeHttpRequests()
                 .requestMatchers("/**")
                 .permitAll()
+                .requestMatchers(HttpMethod.POST, "/**")
+                .permitAll()
                 .and().formLogin()
                 .and().logout()
                 .and().exceptionHandling();
