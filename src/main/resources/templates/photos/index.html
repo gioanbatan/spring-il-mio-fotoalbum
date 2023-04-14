@@ -15,11 +15,7 @@
 </header>
 <div class="container ms_header-margin">
     <th:block th:if="${message}">
-            <div class="alert alert-dismissible fade show my-4"
-                 th:classAppend="${#strings.equals(message.type, 'SUCCESS')} ? alert-info : alert-danger">
-                <div th:text="${message.message}"></div>
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
+        <th:block th:replace="~{/fragments/message-box :: message-box}"></th:block>
     </th:block>
 
     <div class="row">
