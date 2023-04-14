@@ -10,7 +10,10 @@
     <title>Photo</title>
 </head>
 <body>
-<div class="text-center">
+<header>
+    <nav th:replace="~{/fragments/navbar :: navbar('home')}"></nav>
+</header>
+<div class="container text-center ms_header-margin">
     <h1>Photos</h1>
     <a th:href=@{/photos}>ENTRA</a>
 </div>
