@@ -5,7 +5,9 @@ import com.finalproject.photos.model.Photo;
 import com.finalproject.photos.repository.PhotoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 import java.util.Optional;
@@ -38,5 +40,20 @@ public class PhotoService {
         photoToPersist.setVisible(formPhoto.getVisible());
 
         return photoRepository.save(photoToPersist);
+    }
+
+    public Photo updatePhoto(Photo formPhoto, Integer id) throws PhotoNotFoundException {
+        try {
+            Photo photoToUpdate = getPhotoById(id);
+
+            photoToUpdate.setTitle(formPhoto.getTitle());
+            photoToUpdate.setDescription(formPhoto.getDescription());
+            photoToUpdate.setUrl(formPhoto.getUrl());
+            photoToUpdate.setVisible(formPhoto.getVisible());
+
+            return photoRepository.save(photoToUpdate);
+        } catch (PhotoNotFoundException e) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Photo with id " + id + " not found.");
+        }
     }
 }

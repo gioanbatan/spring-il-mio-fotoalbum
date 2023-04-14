@@ -27,7 +27,11 @@
                 <p th:text="${photo.description}"></p>
             </section>
 
-            <section class="ms_actions fs-3">
+            <section class="ms_actions fs-3 d-flex flex-column">
+                <a th:href="@{|/photos/edit/*{id}|}">
+                    <i class="fa-solid fa-pen-fancy me-1 mb-2"></i>
+                    Modify
+                </a>
                 <a th:href="@{/photos}">
                     <i class="fa-solid fa-caret-left me-1"></i>
                     Back</a>
