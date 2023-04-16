@@ -6,11 +6,25 @@ img {
 a {
     text-decoration: none;
     color: initial;
+    transition: color 0.5s;
+}
+
+a:hover {
+    color: var(--ms_color-01);
+    transition: color 0.2s;
+}
+
+ul, li {
+    list-style: none;
 }
 
 /* CUSTOM PROPERTIES*/
 :root {
     --header-height: 70px;
+
+    /* COLORS */
+    --ms_color-01: #bfffbf;
+    --ms_color-02: #101010;
 }
 
 /* COMMON */
@@ -33,16 +47,34 @@ header {
     padding-top: var(--header-height);
 }
 
+.ms_color-01 {
+    color: var(--ms_color-01);
+}
+
+.ms_color-02 {
+    color: var(--ms_color-02);
+}
+
+.ms_border-color-01 {
+    border-color: var(--ms_color-01);
+}
+
+/* CUSTOM */
 .ms_bg-nav {
     background-color: #dddddd;
     box-shadow: 0 4px 0 #00000045;
 }
 
-/* CUSTOM */
 .ms_thumb-limits {
     max-width: 100px;
 }
 
 .ms_image-height-limit-600 {
     max-height: 600px;
+}
+
+.ms_form-categories {
+    border: 1px dashed var(--ms_color-02);
+    border-radius: 15px;
+    padding: 2rem;
 }

@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
     <th:block th:replace="~{/fragments/resources :: head}"></th:block>
-    <title>Photo list</title>
+    <title>Photos index</title>
 </head>
 <body>
 <header>
@@ -57,7 +57,7 @@
             <td class="align-middle">
                 <div class="d-flex flex-column p-2 fs-4 text-center">
                     <a th:href="@{|/photos/edit/*{id}|}" th:title="'Modify ' + *{title}">
-                        <i class="fa-solid fa-pen-fancy py-2"></i>
+                        <i class="fa-solid fa-pen-to-square"></i>
                     </a>
                     <a <a th:href="@{|/photos/delete/*{id}|}" th:title="'Delete ' + *{title}">
                     <i class="fa-solid fa-x py-2"></i>

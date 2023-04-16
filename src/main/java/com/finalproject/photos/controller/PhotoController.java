@@ -4,6 +4,7 @@ import com.finalproject.photos.exception.PhotoNotFoundException;
 import com.finalproject.photos.model.AlertMessage;
 import com.finalproject.photos.model.Photo;
 import com.finalproject.photos.repository.PhotoRepository;
+import com.finalproject.photos.service.CategoryService;
 import com.finalproject.photos.service.PhotoService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +26,9 @@ public class PhotoController {
     private PhotoService photoService;
 
     @Autowired
+    private CategoryService categoryService;
+
+    @Autowired
     private PhotoRepository photoRepository;
 
     @GetMapping
@@ -42,6 +46,7 @@ public class PhotoController {
         photo = photoService.getPhotoById(id);
 
         model.addAttribute("photo", photo);
+        model.addAttribute("categoriesIndex", categoryService.getAllCategories());
         return ("/photos/show");
     }
 
@@ -49,12 +54,14 @@ public class PhotoController {
     public String create(Model model) {
         Photo newPhoto = new Photo();
         model.addAttribute("photo", newPhoto);
+        model.addAttribute("categoriesIndex", categoryService.getAllCategories());
         return ("/photos/create");
     }
 
     @PostMapping("/create")
     public String store(@Valid @ModelAttribute("photo") Photo formPhoto, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
+            model.addAttribute("categoriesIndex", categoryService.getAllCategories());
             return "/photos/create";
         }
         photoService.createPhoto(formPhoto);
@@ -65,6 +72,7 @@ public class PhotoController {
     public String edit(@PathVariable Integer id, Model model) throws PhotoNotFoundException {
         try {
             model.addAttribute("photo", photoService.getPhotoById(id));
+            model.addAttribute("categoriesIndex", categoryService.getAllCategories());
             return "/photos/edit";
         } catch (PhotoNotFoundException e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Photo with id " + id + " not found.");

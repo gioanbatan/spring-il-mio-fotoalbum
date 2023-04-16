@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
+import java.util.Set;
+
 @Entity
 @Table(name = "photos")
 public class Photo {
@@ -26,13 +28,18 @@ public class Photo {
     @NotNull
     private Boolean visible;
 
+    @ManyToMany()
+    @JoinTable(
+            name = "photos_categories",
+            joinColumns = @JoinColumn(name = "photo_id"),
+            inverseJoinColumns = @JoinColumn(name = "category_id"))
+    private Set<Category> categories;
 
     public Photo() {
         super();
     }
 
-    public Photo(Integer id, String title, String description, String url, Boolean visible) {
-        this.id = id;
+    public Photo(String title, String description, String url, Boolean visible) {
         this.title = title;
         this.description = description;
         this.url = url;
@@ -77,5 +84,13 @@ public class Photo {
 
     public void setVisible(Boolean visible) {
         this.visible = visible;
+    }
+
+    public Set<Category> getCategories() {
+        return categories;
+    }
+
+    public void setCategories(Set<Category> categories) {
+        this.categories = categories;
     }
 }

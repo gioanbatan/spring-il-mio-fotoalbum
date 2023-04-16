@@ -5,11 +5,11 @@
 <body>
 
 
-<div th:fragment="message-box" class="alert alert-dismissible fade show my-4"
-     th:classAppend="${#strings.equals(message.type, 'SUCCESS')} ? alert-info : alert-danger">
+<section th:fragment="message-box" class="alert alert-dismissible fade show my-4"
+         th:classAppend="${#strings.equals(message.type, 'SUCCESS')} ? alert-info : alert-danger">
     <div th:text="${message.message}"></div>
     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-</div>
+</section>
 
 
 </body>

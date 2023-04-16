@@ -16,7 +16,11 @@
 
 <div class="container ms_header-margin">
     <h1 class="text-center">Create a new photo</h1>
+    <h2 th:text="${categoryList}"></h2>
     <form id="form-photo" th:object="${photo}" th:action="@{/photos/create}" method="post">
+        <ul>
+            <li th:each="err : ${#fields.globalErrors() }" th:text="${err}"></li>
+        </ul>
         <div class="row">
             <div class="form-group col-8">
                 <div class="mb-3">
@@ -30,21 +34,19 @@
                         </ul>
                     </div>
                 </div>
-            </div>
 
-            <div class="form-group col-4">
-                <label for="url" class="form-label">Url</label>
-                <input type="text" class="form-control" id="url" th:field="*{url}" aria-describedby="Url of photo"
-                       placeholder="Url of photo..." th:errorClass="is-invalid">
-                <div class="invalid-feedback" th:if="${#fields.hasErrors('url')}">
-                    <ul>
-                        <li th:each="err : ${#fields.errors('url')}" th:text="${err}"></li>
-                    </ul>
+                <div class="mb-3">
+                    <label for="url" class="form-label">Url</label>
+                    <input type="text" class="form-control" id="url" th:field="*{url}"
+                           aria-describedby="Url of photo"
+                           placeholder="Url of photo..." th:errorClass="is-invalid">
+                    <div class="invalid-feedback" th:if="${#fields.hasErrors('url')}">
+                        <ul>
+                            <li th:each="err : ${#fields.errors('url')}" th:text="${err}"></li>
+                        </ul>
+                    </div>
                 </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="form-group col-12">
+
                 <div class="mb-3">
                     <label for="description" class="form-label">Description</label>
                     <textarea class="form-control" id="description" th:field="*{description}"
@@ -55,18 +57,32 @@
                         </ul>
                     </div>
                 </div>
+
+                <div class="mb-3 form-check">
+                    <label class="form-check-label" for="visible">Visible to users</label>
+                    <input type="checkbox" class="form-check-input" id="visible" th:field="*{visible}">
+                    <div class="invalid-feedback" th:if="${#fields.hasErrors('visible')}">
+                        <ul>
+                            <li th:each="err : ${#fields.errors('visible')}" th:text="${err}"></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group col-4 ps-5">
+                <h3>Categories</h3>
+
+                <div class="form-check" th:each="category : ${categoriesIndex}">
+                    <label class="form-check-label" th:for="|category_${category.id}|"
+                           th:text="${category.name}"></label>
+                    <input class="form-check-input" type="checkbox" th:value="${category.id}"
+                           th:id="|category_${category.id}|" th:field="*{categories}">
+                </div>
             </div>
         </div>
-        <div class="mb-3 form-check">
-            <label class="form-check-label" for="visible">Visible to users</label>
-            <input type="checkbox" class="form-check-input" id="visible" th:field="*{visible}">
-            <div class="invalid-feedback" th:if="${#fields.hasErrors('visible')}">
-                <ul>
-                    <li th:each="err : ${#fields.errors('visible')}" th:text="${err}"></li>
-                </ul>
-            </div>
-        </div>
-        <button type="submit" class="btn btn-outline-dark">Create</button>
+
+        <button type="submit" class="btn btn-outline-dark ms_color-01 ms_border-color-01">Create photo</button>
+        <button type="reset" class="btn btn-outline-dark">Clear fields</button>
     </form>
 </div>
 </body>

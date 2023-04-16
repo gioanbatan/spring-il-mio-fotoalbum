@@ -16,3 +16,12 @@ INSERT INTO `photos`(`title`, `description`, `url`, `visible`) VALUES('sesta', '
 INSERT INTO `photos`(`title`, `description`, `url`, `visible`) VALUES('settima', 'quisquam sed totam voluptate, voluptatibus. Dolore eos ut vel.', '/images/img_7.jpg', true);
 INSERT INTO `photos`(`title`, `description`, `url`, `visible`) VALUES('ottava', 'distinctio eos eum illo ipsum molestiae nam natus nulla porro quam', '/images/img_8.jpg', true);
 INSERT INTO `photos`(`title`, `description`, `url`, `visible`) VALUES('nona', 'ipsum dolor sit amet, consectetur adipisicing elit', '/images/img_9.jpg', true);
+
+INSERT INTO `categories`(`name`) VALUES('B-W');
+INSERT INTO `categories`(`name`) VALUES('Potrait');
+INSERT INTO `categories`(`name`) VALUES('Urbex');
+INSERT INTO `categories`(`name`) VALUES('Landscape');
+INSERT INTO `categories`(`name`) VALUES('Street');
+INSERT INTO `categories`(`name`) VALUES('Macro');
+INSERT INTO `categories`(`name`) VALUES('Fashion');
+INSERT INTO `categories`(`name`) VALUES('Food');
