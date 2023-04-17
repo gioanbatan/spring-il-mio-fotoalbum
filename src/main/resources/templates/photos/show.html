@@ -14,18 +14,19 @@
     <nav th:replace="~{/fragments/navbar :: navbar('index')}"></nav>
 </header>
 
-<div class="container ms_header-margin text-center">
+<div class="container ms_header-margin text-center" th:object="${photo}">
     <div class="row">
-        <h1 th:text="${photo.title}"></h1>
+        <h1 th:text="*{title}"></h1>
         <div class="col-8">
-            <img class="ms_image-height-limit-600" th:src="${photo.url}">
+            <img class="ms_image-height-limit-600" th:src="*{url}">
         </div>
 
         <div class="col-4 d-flex flex-column justify-content-between">
             <section class="ms_text-content">
                 <h4>Categories</h4>
                 <p class="d-flex flex-wrap">
-                    <span th:each="category : ${categories}" class="form-check" th:text="'#' + ${category.name}"></span>
+                    <span th:each="category : ${photo.categories}" class="form-check"
+                          th:text="'#' + ${category.name}"></span>
                 </p>
                 <h4>Description</h4>
                 <p th:text="${photo.description}"></p>

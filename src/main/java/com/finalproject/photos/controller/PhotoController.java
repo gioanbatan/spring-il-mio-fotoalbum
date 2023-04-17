@@ -46,7 +46,6 @@ public class PhotoController {
         photo = photoService.getPhotoById(id);
 
         model.addAttribute("photo", photo);
-        model.addAttribute("categoriesIndex", categoryService.getAllCategories());
         return ("/photos/show");
     }
 
