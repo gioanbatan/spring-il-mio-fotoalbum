@@ -16,7 +16,7 @@ import java.util.Optional;
 public class PhotoService {
 
     @Autowired
-    PhotoRepository photoRepository;
+    private PhotoRepository photoRepository;
 
     public List<Photo> getAllPhotos() {
         return photoRepository.findAll(Sort.by("id"));
