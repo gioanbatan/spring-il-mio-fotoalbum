@@ -1,5 +1,6 @@
 <!doctype html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">>
 <head>
 </head>
 <body>
@@ -25,10 +26,19 @@
                        th:href="@{/categories}">Categories</a>
                 </li>
             </ul>
-            <form class="d-flex" role="search">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+            <form method="get"
+                  th:action="@{/photos}"
+                  class="d-flex"
+                  role="search">
+                <input class="form-control me-2" type="search" placeholder="Search Photo" aria-label="Search" name="q"
+                       th:value="${searchKey}">
                 <button class="btn btn-outline-success" type="submit">Search</button>
             </form>
+
+            <div class="ms-3">
+                <span sec:authentication="name"></span>
+                <a class="btn btn-outline-secondary" th:href="@{/logout}">Logout</a>
+            </div>
         </div>
     </div>
 </nav>

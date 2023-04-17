@@ -31,6 +31,15 @@ public class PhotoService {
         }
     }
 
+    public List<Photo> getFilteredPhotos(String searchKey) {
+        List<Photo> result = photoRepository.findByTitleContainingIgnoreCase(searchKey);
+        if (result.size() > 0) {
+            return result;
+        } else {
+            throw new PhotoNotFoundException("Images not found.");
+        }
+    }
+
     public Photo createPhoto(Photo formPhoto) {
         Photo photoToPersist = new Photo();
 

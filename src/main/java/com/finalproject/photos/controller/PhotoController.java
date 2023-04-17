@@ -32,9 +32,13 @@ public class PhotoController {
     private PhotoRepository photoRepository;
 
     @GetMapping
-    public String index(Model model) {
+    public String index(Model model, @RequestParam(name = "q") Optional<String> searchKey) {
         List<Photo> photos;
-        photos = photoService.getAllPhotos();
+        if (searchKey.isPresent()) {
+            photos = photoService.getFilteredPhotos(searchKey.get());
+        } else {
+            photos = photoService.getAllPhotos();
+        }
 
         model.addAttribute("photos", photos);
         return ("/photos/index");
