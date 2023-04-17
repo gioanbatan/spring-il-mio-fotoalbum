@@ -21,7 +21,7 @@ public class CategoryService {
         return categoryRepository.findAll(Sort.by("name"));
     }
 
-    public Category getCategoryById(Integer id) {
+    public Category getCategoryById(Integer id) throws RuntimeException {
         return categoryRepository.findById(id).orElseThrow(() -> new RuntimeException());
     }
 
@@ -33,7 +33,7 @@ public class CategoryService {
         return categoryRepository.save(categoryToCreate);
     }
 
-    public Category updateCategory(Integer id, Category formCategory) {
+    public Category updateCategory(Category formCategory, Integer id) throws CategoryNotFoundException {
         try {
             Category categoryToUpdate = getCategoryById(id);
             categoryToUpdate.setName(formCategory.getName());

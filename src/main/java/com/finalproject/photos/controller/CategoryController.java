@@ -46,7 +46,7 @@ public class CategoryController {
         }
 
         if (category.getId() != null) {
-            categoryService.updateCategory(category.getId(), category);
+            categoryService.updateCategory(category, category.getId());
         } else {
             categoryService.createCategory(category);
         }
