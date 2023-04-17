@@ -23,7 +23,7 @@ public class PhotoRestController {
     @GetMapping
     public List<Photo> list(@RequestParam(name = "q") Optional<String> search) {
         if (search.isPresent()) {
-            return null; // ADD SEARCH METHOD IN PHOTOSERVICE
+            return photoService.getFilteredPhotos(search.get());
         }
         return photoService.getAllPhotos();
     }

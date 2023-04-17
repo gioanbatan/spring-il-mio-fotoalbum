@@ -28,9 +28,11 @@
             </div>
 
             <ul class="list-group">
-                <li th:each="category : ${categoriesIndex}" class="list-group-item list-group-item-action">
-                    <a th:href="@{/categories(id=${category.id})}" th:text="${category.name}"></a>
-                </li>
+                <a th:each="category : ${categoriesIndex}" th:href="@{/categories(id=${category.id})}"
+                   class="list-group-item">
+                    <li class="list-group-item-action" th:text="${category.name}">
+                    </li>
+                </a>
             </ul>
         </div>
 
