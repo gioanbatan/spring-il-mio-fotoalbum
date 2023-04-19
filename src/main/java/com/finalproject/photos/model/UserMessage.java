@@ -3,6 +3,9 @@ package com.finalproject.photos.model;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
+import org.hibernate.annotations.CreationTimestamp;
+
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "messages")
@@ -19,6 +22,13 @@ public class UserMessage {
     @NotBlank
     @Column(nullable = false)
     private String content;
+
+    @Column(name = "already_read")
+    private boolean alreadyRead;
+
+    @CreationTimestamp
+    @Column(name = "created_at")
+    private LocalDateTime createdAt;
 
     public Integer getId() {
         return id;
@@ -42,5 +52,21 @@ public class UserMessage {
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public boolean getAlreadyRead() {
+        return alreadyRead;
+    }
+
+    public void setAlreadyRead(boolean alreadyRead) {
+        this.alreadyRead = alreadyRead;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
     }
 }

@@ -1,0 +1,13 @@
+@use "./partials/variables" as *;
+@import "node_modules/bootstrap/scss/bootstrap";
+
+// RESET
+img {
+    max-width: 100%;
+}
+
+.ms_main-container {
+    width: 100%;
+    height: 100vh;
+    overflow-y: scroll;
+}
